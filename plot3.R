@@ -38,7 +38,7 @@ tbl[,Sub_metering_3:=as.numeric(Sub_metering_3)]
 # Add a DateTime column
 tbl[,DateTime:=as.POSIXct(paste(Date, Time))]
 
-# Plot a line graph showing Global Active Power (kilowatts) over time
+# Plot a line graph showing relative values of Sub Metering 1, 2, & 3
 # Save it to png
 png("./plot3.png", width=480, height=480, units="px")
 with(tbl, plot(DateTime, Sub_metering_1, type="l", xlab="",
