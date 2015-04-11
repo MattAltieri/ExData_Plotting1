@@ -14,7 +14,7 @@ if (!file.exists(datafile)) {
 # Read in the file
 require(data.table)
 require(dplyr)
-temp_tbl <- fread(datafile, na.strings="?")
+suppressWarnings(temp_tbl <- fread(datafile, na.strings="?"))
 
 # Set the temp_tbl$Date type to Date
 temp_tbl[,Date:=as.Date(Date, format="%d/%m/%Y")]

@@ -14,7 +14,7 @@ if (!file.exists(datafile)) {
 # Read in the file
 require(data.table)
 require(dplyr)
-temp_tbl <- fread(datafile, na.strings="?")
+suppressWarnings(temp_tbl <- fread(datafile, na.strings="?"))
 
 # Set the temp_tbl$Date type to Date
 temp_tbl[,Date:=as.Date(Date, format="%d/%m/%Y")]
@@ -40,3 +40,7 @@ tbl[,DateTime:=as.POSIXct(paste(Date, Time))]
 
 # Plot a line graph showing Global Active Power (kilowatts) over time
 # Save it to png
+png("./plot2.png", width=480, height=480, units="px")
+with(tbl, plot(DateTime, Global_active_power, type="l", xlab="",
+               ylab="Global Active Power (kilowatts)"))
+dev.off()
